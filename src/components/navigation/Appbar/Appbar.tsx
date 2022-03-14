@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Children, ReactNode, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { Burger } from "../../icons/Hamburger/Hamburger";
@@ -7,15 +7,22 @@ import {
   ABHamburgerMenuContainer,
   ABMenuContainer,
   ABTitle,
+  SideMenuContainer,
 } from "./Appbar.styled";
 
-const Appbar = () => {
+const Appbar = (props: { children: ReactNode }) => {
   const { AppName } = useSelector((state: RootState) => state.AppInfo);
   const [open, Setopen] = useState(false);
+  const [isScrolledToTop, setIsScrolledToTop] = useState<boolean>(false);
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY < 101) setIsScrolledToTop(true);
+    else setIsScrolledToTop(false);
+  });
   return (
     <>
-      {/* <>sideMenu</> */}
-      <ABContainer>
+      <SideMenuContainer open={open}>hello</SideMenuContainer>
+      <ABContainer IsScrolledTop={isScrolledToTop}>
         <ABTitle>{AppName}</ABTitle>
         <ABMenuContainer>AppbarMenu</ABMenuContainer>
         <ABHamburgerMenuContainer>
@@ -28,6 +35,7 @@ const Appbar = () => {
           />
         </ABHamburgerMenuContainer>
       </ABContainer>
+      <div style={{ marginTop: "7rem" }}>{props.children}</div>
     </>
   );
 };

@@ -14,4 +14,5 @@ code {
 
 html {
   font-size: 62.5%;
+  overflow-inline: calc(300 / 2);
 }

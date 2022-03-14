@@ -1,15 +1,8 @@
 import React from "react";
-import { useTheme } from "styled-components";
-import Appbar from "./components/navigation/Appbar/Appbar";
+import Layout from "./components/navigation/Appbar";
 
 const App = () => {
-  const theme = useTheme();
-  console.log(theme);
-  return (
-    <div>
-      <Appbar />
-    </div>
-  );
+  return <Layout>hello</Layout>;
 };
 
 export default App;
