@@ -3,6 +3,7 @@ import { AppInfo } from "./interface";
 
 const initialState: AppInfo = {
   AppName: "ChronoMetr",
+  isLoggedIn: false,
 };
 
 const AppInfoReducer = createSlice({
