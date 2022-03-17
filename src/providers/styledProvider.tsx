@@ -8,18 +8,15 @@ import {
   sizeTheme as size,
 } from "../themes";
 
+export const Mytheme = {
+  color,
+  font,
+  shadow,
+  size,
+  transition,
+};
 const StyledProvider = ({ children }: { children: ReactNode }) => {
-  return (
-    <ThemeProvider theme={{ color }}>
-      <ThemeProvider theme={{ font }}>
-        <ThemeProvider theme={{ shadow }}>
-          <ThemeProvider theme={{ size }}>
-            <ThemeProvider theme={{ transition }}>{children}</ThemeProvider>
-          </ThemeProvider>
-        </ThemeProvider>
-      </ThemeProvider>
-    </ThemeProvider>
-  );
+  return <ThemeProvider theme={Mytheme}>{children}</ThemeProvider>;
 };
 
 export default StyledProvider;

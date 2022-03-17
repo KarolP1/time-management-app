@@ -51,9 +51,13 @@ interface SidemenuProps {
 export const SideMenuContainer = styled.div<SidemenuProps>`
   position: fixed;
   top: 0;
-  transition: left 250ms ease;
+  transition: left 500ms ease;
   left: ${({ open }) => (!open ? "100%" : 0)};
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-color: ${({ theme }) => theme.color.primaryLight};
+  padding-top: 6rem;
+  display: flex;
+  border: 1px solid ${({ theme }) => theme.color.secondaryDark};
+  box-sizing: border-box;
 `;
