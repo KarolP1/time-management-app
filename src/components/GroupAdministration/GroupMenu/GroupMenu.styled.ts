@@ -42,8 +42,10 @@ export const GroupContainerMenu = styled.div<{ open: boolean }>`
   border-radius: 1rem;
   transition: display 5000ms ease-in-out;
   display: ${({ open }) => (open ? "flex" : "none")};
-  flex: 1;
   margin: 10rem 10rem;
   box-shadow: ${({ theme }) => theme.shadow.boxMedium};
   padding: 2rem 5rem;
+  position: absolute;
+  width: fill-available;
+  height: 50%;
 `;

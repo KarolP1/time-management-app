@@ -11,7 +11,7 @@ export interface UserInfo {
 export interface Group {
   id: number;
   GroupName: string;
-  groupDescription: string;
+  GroupDescription: string;
   ownerInfo: UserInfo;
   AllUsersInfo: UserInfo[];
   createdByUserId: number;
@@ -29,7 +29,7 @@ interface groupsInterface {
 }
 
 const initialState = {
-  groups: [],
+  groups: undefined,
   isGroupLoading: false,
   errors: {},
   succes: false,
