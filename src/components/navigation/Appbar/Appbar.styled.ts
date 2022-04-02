@@ -25,6 +25,7 @@ export const ABTitle = styled.h1`
 export const ABMenuContainer = styled.div`
   display: flex;
   color: white;
+  flex-direction: row;
   @media (max-width: ${({ theme }) => theme.size.md}) {
     display: none;
   }
@@ -56,8 +57,11 @@ export const SideMenuContainer = styled.div<SidemenuProps>`
   height: 100%;
   width: 100%;
   background-color: ${({ theme }) => theme.color.primaryLight};
-  padding-top: 6rem;
   display: flex;
   border: 1px solid ${({ theme }) => theme.color.secondaryDark};
   box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;

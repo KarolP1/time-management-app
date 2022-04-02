@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import LoginPage from "../../pages/Login";
+import LoginPage from "../../pages/notSignedUp/auth/Login";
 import { Home } from "../../pages/notSignedUp";
-import RegisterPage from "../../pages/register";
+import RegisterPage from "../../pages/notSignedUp/auth/register";
 
 const SignedOut = () => {
   return (

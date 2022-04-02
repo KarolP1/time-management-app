@@ -7,7 +7,7 @@ interface MenuItemI {
 export const MenuItemButton = styled.button<MenuItemI>`
   background-color: transparent;
   border: none;
-  font-size: 2rem;
+  font-size: 1.2rem;
   color: ${({ theme }) => theme.color.secondaryMedium};
   border-bottom: 1px solid transparent;
   margin: 1rem 2rem;
@@ -32,10 +32,13 @@ export const MenuItemButton = styled.button<MenuItemI>`
       ${({ theme, accent }) => (accent ? theme.color.secondaryLight : "#fff")};
   }
   a {
+    display: inline-block;
     color: ${({ theme, accent }) =>
       accent ? theme.color.secondaryMedium : "#fff"};
     text-decoration: none;
     text-transform: capitalize;
+    width: 100%;
+    height: 100%;
   }
   a:hover {
     color: ${({ theme, accent }) =>

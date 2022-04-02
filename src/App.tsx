@@ -1,4 +1,3 @@
-import React from "react";
 import Layout from "./components/navigation/Appbar";
 import MyRoutes from "./navigation/routes";
 

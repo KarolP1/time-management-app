@@ -1,23 +1,41 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { LForm, LoginContainer, SubmitButton } from "./Login.styled";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { RootState } from "../../../../store";
+import { loginUser } from "../../../../store/authentication/thunkReducers";
+import {
+  ImageContainer,
+  LForm,
+  LoginContainer,
+  SubmitButton,
+} from "../Auth.styled";
 import logo from "./pngegg.png";
 
-interface authLogin {
-  login: string;
+export interface authLogin {
+  email: string;
   password: string;
 }
 
 const LoginPage = () => {
   const [authForm, setAuthForm] = useState<authLogin>({
-    login: "",
+    email: "",
     password: "",
   });
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const succes = useSelector((state: RootState) => state.Auth.succesLogin);
   const sumbmitLoginRequest = (e: React.SyntheticEvent) => {
     e.preventDefault();
     console.log(authForm);
+    dispatch(loginUser(authForm));
   };
+
+  useEffect(() => {
+    if (succes === true) {
+      navigate("/");
+    }
+    if (succes === false) navigate("/login");
+  }, [succes, navigate, dispatch]);
 
   const updateInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAuthForm({ ...authForm, [e.target.name]: e.target.value });
@@ -25,16 +43,19 @@ const LoginPage = () => {
 
   return (
     <LoginContainer>
-      <img src={logo} alt="someimage" />
+      <ImageContainer>
+        <img src={logo} alt="someimage" />
+      </ImageContainer>
       <LForm
         onSubmit={(e: React.SyntheticEvent) => {
           sumbmitLoginRequest(e);
         }}
       >
+        <h1>Login</h1>
         <input
-          value={authForm.login}
-          name="login"
-          placeholder="Login"
+          value={authForm.email}
+          name="email"
+          placeholder="email"
           type={"text"}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             updateInput(e);

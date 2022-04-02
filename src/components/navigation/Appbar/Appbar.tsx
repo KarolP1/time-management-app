@@ -4,6 +4,7 @@ import { RootState } from "../../../store";
 import { toggleMenu } from "../../../store/appInfo";
 import { Burger } from "../../icons/Hamburger/Hamburger";
 import SideMenu from "../SideMenu";
+import MenuItems from "../SideMenu/MenuItems";
 import {
   ABContainer,
   ABHamburgerMenuContainer,
@@ -30,7 +31,9 @@ const Appbar = (props: { children: ReactNode }) => {
       </SideMenuContainer>
       <ABContainer IsScrolledTop={isScrolledToTop}>
         <ABTitle>{AppName}</ABTitle>
-        <ABMenuContainer>AppbarMenu</ABMenuContainer>
+        <ABMenuContainer>
+          <MenuItems />
+        </ABMenuContainer>
         <ABHamburgerMenuContainer>
           <Burger
             open={isMenuOpen}

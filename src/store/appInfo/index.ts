@@ -15,8 +15,11 @@ const AppInfoReducer = createSlice({
     toggleMenu: (state) => {
       state.isMenuOpen = !state.isMenuOpen;
     },
+    loginSet: (state) => {
+      state.isLoggedIn = !state.isLoggedIn;
+    },
   },
 });
-export const { toggleMenu } = AppInfoReducer.actions;
+export const { toggleMenu, loginSet } = AppInfoReducer.actions;
 
 export default AppInfoReducer.reducer;

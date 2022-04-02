@@ -1,10 +1,11 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import Homepage from "../../pages/SignedIn/homepage";
 
 const SignedIn = () => {
   return (
     <Routes>
-      <Route path="/" element={<div>hello home</div>} />
+      <Route path="/" element={<Homepage />} />
     </Routes>
   );
 };
