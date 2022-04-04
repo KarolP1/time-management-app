@@ -9,6 +9,7 @@ import { PageContainer } from "./homepahe.styled";
 
 const Homepage = () => {
   const { succes, groups } = useSelector((state: RootState) => state.Groups);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMyGroups());
@@ -17,7 +18,7 @@ const Homepage = () => {
   return (
     <PageContainer>
       {groups?.map((group: Group) => (
-        <GroupMainCard GroupProps={group} />
+        <GroupMainCard GroupProps={group} key={group.id} />
       ))}
       <CircleMenu />
     </PageContainer>

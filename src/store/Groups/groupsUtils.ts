@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { SyntheticEvent } from "react";
-
+import { ioc } from "../../App";
 export interface createRequest {
   groupName: string;
   groupDescription: string;
@@ -26,6 +26,12 @@ export const createNewGroup = createAsyncThunk(
           },
         }
       );
+
+      ioc.emit("group/create", {
+        groupName: groupName,
+        groupDescription: groupDescription,
+      });
+
       return response.data.message.data;
     } catch (err: any) {
       return rejectWithValue(err.response.data);

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CardContainer = styled.div`
+export const CardContainer = styled.div<{ ref: any }>`
   display: flex;
   flex-direction: column;
   width: fill-available;
@@ -9,6 +9,7 @@ export const CardContainer = styled.div`
   padding: 2rem;
   background-color: ${({ theme }) => theme.color.primaryLighter};
   border-radius: 1rem;
+  position: relative;
 `;
 
 export const CardTitle = styled.p`
@@ -105,4 +106,49 @@ export const UserCircle = styled.div<{
       text-align: center;
     }
   }
+`;
+
+export const GroupOptionContainer = styled.button`
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem;
+  border: none;
+  background-color: ${({ theme }) => theme.color.primaryMedium};
+  border-radius: 3rem;
+  box-shadow: ${({ theme }) => theme.shadow.boxLight};
+  cursor: pointer;
+  transition: all 50ms linear;
+  z-index: 10;
+
+  &:hover {
+    box-shadow: ${({ theme }) => theme.shadow.boxMedium};
+  }
+  &:active {
+    transform: rotate(1000deg);
+  }
+
+  div {
+    border-radius: 3rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: ${({ theme }) => theme.color.secondaryDark};
+  }
+`;
+
+export const MenuButton = styled(GroupOptionContainer)<{
+  open: boolean;
+  numberInRow: number;
+}>`
+  z-index: 1;
+  color: ${({ theme }) => theme.color.secondaryDark};
+  transform: translateX(
+    ${({ open, numberInRow }) => (open ? -numberInRow * 5 + "rem" : "0")}
+  );
 `;
