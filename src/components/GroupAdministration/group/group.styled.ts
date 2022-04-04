@@ -151,4 +151,5 @@ export const MenuButton = styled(GroupOptionContainer)<{
   transform: translateX(
     ${({ open, numberInRow }) => (open ? -numberInRow * 5 + "rem" : "0")}
   );
+  justify-content: center;
 `;
