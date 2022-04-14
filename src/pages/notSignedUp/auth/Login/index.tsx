@@ -9,7 +9,7 @@ import {
   LoginContainer,
   SubmitButton,
 } from "../Auth.styled";
-import logo from "./pngegg.png";
+import logo from "../../../../assets/images/pngegg.png";
 
 export interface authLogin {
   email: string;
@@ -26,7 +26,6 @@ const LoginPage = () => {
   const succes = useSelector((state: RootState) => state.Auth.succesLogin);
   const sumbmitLoginRequest = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log(authForm);
     dispatch(loginUser(authForm));
   };
 
@@ -44,19 +43,14 @@ const LoginPage = () => {
   return (
     <LoginContainer>
       <ImageContainer>
-        <img src={logo} alt="someimage" />
+        <img src={logo} alt="logo" />
       </ImageContainer>
-      <LForm
-        onSubmit={(e: React.SyntheticEvent) => {
-          sumbmitLoginRequest(e);
-        }}
-      >
-        <h1>Login</h1>
+      <LForm onSubmit={sumbmitLoginRequest}>
         <input
           value={authForm.email}
           name="email"
-          placeholder="email"
-          type={"text"}
+          placeholder="Email"
+          type={"email"}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             updateInput(e);
           }}
@@ -70,8 +64,10 @@ const LoginPage = () => {
             updateInput(e);
           }}
         />
-        <SubmitButton type="submit" name="submit" value="Login" />
-        <Link to="/register">Dont have account? Register right now</Link>
+        <SubmitButton type="submit" name="submit">
+          Login
+        </SubmitButton>
+        <Link to="/register">You didn't have account? Register now!</Link>
       </LForm>
     </LoginContainer>
   );

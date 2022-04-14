@@ -11,7 +11,6 @@ export interface User {
 export const ReadToken = (token: string) => {
   try {
     const data = jwtDecode(token);
-    console.log(data);
     return data;
   } catch (error: any) {
     return new Error(error);

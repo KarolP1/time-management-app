@@ -1,5 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import jwtDecode from "jwt-decode";
+import { ioc } from "../../App";
 import { authLogin } from "../../pages/notSignedUp/auth/Login";
 
 export interface userInterface {
@@ -31,8 +33,8 @@ export const loginUser = createAsyncThunk(
         "http://localhost:8080/api/v1/user/login",
         user
       );
-      localStorage.setItem("token", response.data.token);
 
+      localStorage.setItem("token", response.data.token);
       return response.data;
     } catch (err: any) {
       return rejectWithValue(err.response.data.message);
@@ -50,8 +52,14 @@ export const validateToken = createAsyncThunk(
       );
       localStorage.setItem("token", response.data.token);
 
+      const data = jwtDecode(token || "");
+      ioc.emit("user:login", data);
+
       return response.data;
     } catch (err: any) {
+      const token = localStorage.getItem("token");
+      const data = jwtDecode(token || "");
+      ioc.emit("user:logout", data);
       return rejectWithValue(err.response.data);
     }
   }

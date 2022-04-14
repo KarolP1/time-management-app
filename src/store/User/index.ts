@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { User } from "./user.reducer";
+import { ioc } from "../../App";
+
 const initialState: User = {
   id: null,
   first_name: null,
@@ -20,6 +22,14 @@ const userReducer = createSlice({
       state.first_name = action.payload.first_name;
       state.last_name = action.payload.last_name;
       state.role = action.payload.role;
+      ioc.emit("user/login", {
+        data: {
+          id: state.id,
+          name: state.first_name,
+          last_name: state.last_name,
+          email: state.email,
+        },
+      });
     },
   },
 });

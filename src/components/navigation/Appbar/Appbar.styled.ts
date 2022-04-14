@@ -14,6 +14,7 @@ export const ABContainer = styled.div<ABContainerProps>`
   left: 0;
   width: 100%;
   justify-content: space-between;
+  z-index: 200;
   align-items: center;
 `;
 
@@ -26,7 +27,7 @@ export const ABMenuContainer = styled.div`
   display: flex;
   color: white;
   flex-direction: row;
-  @media (max-width: ${({ theme }) => theme.size.md}) {
+  @media (max-width: ${({ theme }) => theme.size.lg}) {
     display: none;
   }
 `;
@@ -40,7 +41,7 @@ export const ABHamburgerMenuContainer = styled.div`
   bacground-color: red;
   margin-right: 2rem;
   z-index: 3;
-  @media (min-width: ${({ theme }) => theme.size.md}) {
+  @media (min-width: ${({ theme }) => theme.size.lg}) {
     display: none;
   }
 `;
@@ -56,12 +57,14 @@ export const SideMenuContainer = styled.div<SidemenuProps>`
   left: ${({ open }) => (!open ? "100%" : 0)};
   height: 100%;
   width: 100%;
-  background-color: ${({ theme }) => theme.color.primaryLight};
+  background-color: red;
+  // background-color: ${({ theme }) => theme.color.primaryLight};
   display: flex;
   border: 1px solid ${({ theme }) => theme.color.secondaryDark};
   box-sizing: border-box;
+  z-index: 100;
 
-  @media (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.size.lg}) {
     display: none;
   }
 `;

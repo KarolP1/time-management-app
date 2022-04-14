@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createNewGroup, getMyGroups } from "./groupsUtils";
+import GroupNewUser from "../../components/GroupAdministration/group/GroupNewUser";
+import {
+  createNewGroup,
+  deleteGroup,
+  editGroup,
+  getMyGroups,
+} from "./groupsUtils";
 
 export interface UserInfo {
   email: string;
@@ -26,6 +32,7 @@ interface groupsInterface {
   GroupCreateorMenuOpen: boolean;
   //get groups
   groups?: Group[];
+  res: any;
 }
 
 const initialState = {
@@ -48,7 +55,6 @@ const groupReducer = createSlice({
     },
   },
   extraReducers: (builder) => {
-    //createNewGroup
     builder.addCase(createNewGroup.pending, (state: groupsInterface) => {
       state.isGroupLoading = true;
       state.groups = [];
@@ -91,6 +97,56 @@ const groupReducer = createSlice({
         state.groups = action.payload;
         state.succes = false;
         state.isGroupLoading = false;
+      }
+    );
+
+    //#region delete group
+
+    builder.addCase(
+      deleteGroup.fulfilled,
+      (state: groupsInterface, action: any) => {
+        state.groups = state.groups?.filter(
+          (group) => group.id !== action.payload
+        );
+        state.isGroupLoading = false;
+        state.succes = true;
+      }
+    );
+    builder.addCase(deleteGroup.pending, (state: groupsInterface) => {
+      state.isGroupLoading = false;
+      state.errors = {};
+      state.succes = false;
+    });
+    builder.addCase(
+      deleteGroup.rejected,
+      (state: groupsInterface, action: any) => {
+        state.errors = action.payload;
+      }
+    );
+    //#end region delete group
+
+    builder.addCase(
+      editGroup.pending,
+      (state: groupsInterface, action: any) => {
+        state.isGroupLoading = true;
+        state.errors = {};
+        state.succes = false;
+      }
+    );
+    builder.addCase(
+      editGroup.rejected,
+      (state: groupsInterface, action: any) => {
+        state.isGroupLoading = false;
+        state.errors = action.payload;
+      }
+    );
+    builder.addCase(
+      editGroup.fulfilled,
+      (state: groupsInterface, action: any) => {
+        state.isGroupLoading = false;
+        state.errors = {};
+        state.succes = true;
+        state.res = action.payload;
       }
     );
   },

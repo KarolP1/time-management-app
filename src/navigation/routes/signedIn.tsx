@@ -13,7 +13,6 @@ const SignedIn = () => {
     dispatch(readToken(data));
   }, [dispatch, data]);
 
-  console.log(data);
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />

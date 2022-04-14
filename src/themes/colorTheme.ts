@@ -4,7 +4,7 @@ export const colorTheme = {
   primaryLight: "#b1b7b5",
   primaryLighter: "#6f7584",
   primaryLightest: "#fff",
-  secondaryDark: "#cf7500",
+  secondaryDark: "#ff8614",
   secondaryMedium: "#ff9103",
   secondaryLight: "#ffaf47",
   warningLight: "#ff6969",

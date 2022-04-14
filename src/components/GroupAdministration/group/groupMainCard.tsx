@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { Dispatch, SetStateAction, useRef, useState } from "react";
 import { useOutsideClick } from "../../../hooks/useOutsideClick";
+import { MenuType } from "../../../pages/SignedIn/homepage/homepage";
 import { Group } from "../../../store/Groups";
 import {
   CardContainer,
@@ -11,7 +12,10 @@ import {
 } from "./group.styled";
 import GroupOption from "./groupOptions";
 
-const GroupMainCard = ({ GroupProps }: { GroupProps: Group }) => {
+interface GroupMainCardI extends MenuType {
+  GroupProps: Group;
+}
+const GroupMainCard = ({ GroupProps, setType, setGroupId }: GroupMainCardI) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const ref = useRef();
 
@@ -23,9 +27,13 @@ const GroupMainCard = ({ GroupProps }: { GroupProps: Group }) => {
   return (
     <CardContainer ref={ref}>
       <GroupOption
+        setGroupId={setGroupId}
+        setType={setType}
         groupId={id}
         isMenuOpen={isMenuOpen}
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        onClick={() => {
+          setIsMenuOpen(!isMenuOpen);
+        }}
       />
       <CardTitle>{GroupName}</CardTitle>
       <CardDescription>{GroupDescription}</CardDescription>
@@ -41,9 +49,7 @@ const GroupMainCard = ({ GroupProps }: { GroupProps: Group }) => {
               key={userInfo.id}
               fullName={`${userInfo.first_name} ${userInfo.last_name}`}
               shortName={`${letterFirstName} ${letterLastName}`}
-            >
-              <p></p>
-            </UserCircle>
+            ></UserCircle>
           );
         })}
       </UserInfoContainer>

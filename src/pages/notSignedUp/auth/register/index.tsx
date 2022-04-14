@@ -9,7 +9,7 @@ import {
   LoginContainer,
   SubmitButton,
 } from "../Auth.styled";
-import logo from "./pngegg.png";
+import logo from "../../../../assets/images/pngegg.png";
 
 export interface authRegister {
   first_name: string;
@@ -57,7 +57,6 @@ const RegisterPage = () => {
           sumbmitRegisterRequest(e);
         }}
       >
-        <h1>register</h1>
         <input
           value={authForm.first_name}
           name="first_name"
@@ -94,7 +93,9 @@ const RegisterPage = () => {
             updateInput(e);
           }}
         />
-        <SubmitButton type="submit" name="submit" value="Register" />
+        <SubmitButton type="submit" name="submit">
+          Register
+        </SubmitButton>
         <Link to="/login">Did you have account? Login here now</Link>
       </LForm>
     </LoginContainer>

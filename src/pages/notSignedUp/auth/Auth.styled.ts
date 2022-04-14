@@ -5,53 +5,66 @@ export const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.color.primaryLightest};
-  margin: 1rem 2rem;
   justify-content: center;
   background-color: ${({ theme }) => theme.color.primaryLight};
   box-shadow: ${({ theme }) => theme.shadow.boxMedium};
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
 
   @media (min-width: ${({ theme }) => theme.size.md}) {
-    flex-direction: row;
-    margin: 10rem auto;
-    border: 1px solid black;
+    margin: 3rem;
   }
-  h1 {
-    margin: 0 2rem;
-    color: ${({ theme }) => theme.color.primaryLightest};
-    text-align: start;
-    text-transform: capitalize;
-    font-size: 3rem;
+
+  @media (min-width: ${({ theme }) => theme.size.lg}) {
+    flex-direction: row;
+    margin: 5rem auto;
+  }
+
+  @media (min-width: ${({ theme }) => theme.size.lg}) {
   }
 `;
 
 export const ImageContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: fill-available;
+  align-items: end;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  max-width: 50vw;
+
   img {
-    flex: 1;
-    padding: 5rem;
-    padding-bottom: 2rem;
-    width: inherit;
     object-fit: contain;
-  }
-  @media (min-width: ${({ theme }) => theme.size.md}) {
-    flex-direction: row;
-    flex: 1;
+    width: 100%;
+    height: 100%;
   }
 `;
 
 export const LForm = styled.form`
   display: flex;
-  flex: 1;
+  flex: 2;
+  width: fill-available;
   flex-direction: column;
   height: 100%;
-  margin: auto;
+  align-items: center;
+  justify-content: start;
+  margin: 2rem;
 
+  @media (min-width: ${({ theme }) => theme.size.lg}) {
+    flex: 1;
+  }
+  @media (min-width: ${({ theme }) => theme.size.md}) {
+    padding: 0 7rem;
+  }
   input {
-    margin: 2rem;
+    margin: 0.5rem;
     padding: 1.5rem 2rem;
     border-radius: 0.5rem;
     border: 2px solid ${({ theme }) => theme.color.primaryDark};
+    width: fill-available;
+    font-size: 1.5rem;
 
     &:focus {
       border-color: ${({ theme }) => theme.color.secondaryDark};
@@ -63,6 +76,7 @@ export const LForm = styled.form`
     font-size: 1.5rem;
     text-decoration: none;
     display: block;
+    padding: 2rem;
     &:active {
       color: ${({ theme }) => theme.color.secondaryMedium};
     }
@@ -72,12 +86,20 @@ export const LForm = styled.form`
   }
 `;
 
-export const SubmitButton = styled.input`
+export const SubmitButton = styled.button`
   background-color: ${({ theme }) => theme.color.primaryDark};
   color: ${({ theme }) => theme.color.primaryLightest};
+  width: fill-available;
+  border: none;
+  box-shadow: ${({ theme }) => theme.shadow.boxMedium};
   font-size: 2rem;
   font-weight: 900;
+  margin: 0.5rem;
+  padding: 1.5rem 2rem;
+  border-radius: 0.5rem;
+
   &:active {
     color: ${({ theme }) => theme.color.secondaryDark};
+    box-shadow: ${({ theme }) => theme.shadow.boxDark};
   }
 `;
